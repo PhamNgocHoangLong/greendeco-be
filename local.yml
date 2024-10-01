@@ -1,0 +1,43 @@
+version: "3.7"
+
+services:
+  postgresql:
+    image: postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=greendeco
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d db_prod"]
+      interval: 30s
+      retries: 5
+      start_period: 30s
+    networks:
+      - db-network
+
+  greendeco-be:
+    build:
+      context: .
+      dockerfile: ./compose/local/Dockerfile
+    volumes:
+      - .:/build:z
+    depends_on:
+      postgresql:
+        condition: service_healthy
+    environment:
+      - DB_HOST=postgresql
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+    ports:
+      - 8080:8080
+    command: /start
+    networks:
+      - db-network
+
+networks:
+  db-network:
+    driver: bridge
