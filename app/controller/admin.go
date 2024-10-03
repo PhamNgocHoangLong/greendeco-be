@@ -118,7 +118,9 @@ func LoginForAdmin(c *fiber.Ctx) error {
 	}
 
 	config := configs.AppConfig().Auth
-	token, err := generateToken(userExist, time.Duration(config.TokenExpire*int(time.Minute)*24))
+	// token, err := generateToken(userExist, time.Duration(config.TokenExpire*int(time.Minute)*24))
+	token, err := generateToken(userExist, time.Duration(config.TokenExpire)*time.Minute*24)
+
 	if err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(models.ErrorResponse{
 			Message: "some thing bad happended",

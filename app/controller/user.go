@@ -138,7 +138,9 @@ func Login(c *fiber.Ctx) error {
 	}
 
 	config := configs.AppConfig().Auth
-	token, err := generateToken(userExist, time.Duration(config.TokenExpire*int(time.Minute)*24))
+	// token, err := generateToken(userExist, time.Duration(config.TokenExpire*int(time.Minute)*24))
+	token, err := generateToken(userExist, time.Duration(config.TokenExpire)*time.Minute*24)
+
 	if err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(models.ErrorResponse{
 			Message: "some thing bad happended",
@@ -229,7 +231,8 @@ func ForgotPassword(c *fiber.Ctx) error {
 	}
 
 	config := configs.AppConfig().Auth
-	token, err := generateToken(user, time.Duration(config.ShortTokenExpire*int(time.Minute)))
+	// token, err := generateToken(user, time.Duration(config.ShortTokenExpire*int(time.Minute)))
+	token, err := generateToken(user, time.Duration(int64(config.ShortTokenExpire)*int64(time.Minute)))
 	if err != nil {
 		println(err)
 	}
