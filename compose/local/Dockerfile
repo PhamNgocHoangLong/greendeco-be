@@ -21,7 +21,7 @@
 #   go install github.com/swaggo/swag/cmd/swag@latest
 
 # ENTRYPOINT ["/entrypoint"]
-FROM golang:1.20.1-bullseye
+FROM golang:1.23-bullseye
 
 COPY ./compose/local/entrypoint /entrypoint
 RUN sed -i 's/\r$//g' /entrypoint
