@@ -41,7 +41,7 @@ type Config struct {
 			ClientX509CertURL       string `envconfig:"CLIENT_X509_CERT_URL" default:"https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-23jb7%40greendeco-cfabf.iam.gserviceaccount.com" json:"client_x509_cert_url"`
 			UniverseDomain          string `envconfig:"UNIVERSE_DOMAIN" default:"googleapis.com" json:"universe_domain"`
 		}
-		Bucket string `envconfig:"FIREBASE_BUCKET" default:"gs://greendeco-cfabf.appspot.com"`
+		Bucket string `envconfig:"FIREBASE_BUCKET" default:"greendeco-cfabf.appspot.com"`
 	}
 	VnPay struct {
 		Secret     string `envconfig:"VNPAY_SECRET" default:"XNBCJFAKAZQSGTARRLGCHVZWCIOIGSHN"`
