@@ -4194,6 +4194,9 @@
                 },
                 "product_id": {
                     "type": "string"
+                },
+                "quantity": {
+                    "type": "integer"
                 }
             }
         },
@@ -4469,7 +4472,8 @@
                 "image",
                 "name",
                 "price",
-                "product_id"
+                "product_id",
+                "quantity"
             ],
             "properties": {
                 "available": {
@@ -4505,6 +4509,9 @@
                 },
                 "product_id": {
                     "type": "string"
+                },
+                "quantity": {
+                    "type": "integer"
                 }
             }
         },

@@ -4200,6 +4200,9 @@ const docTemplate = `{
                 },
                 "product_id": {
                     "type": "string"
+                },
+                "quantity": {
+                    "type": "integer"
                 }
             }
         },
@@ -4475,7 +4478,8 @@ const docTemplate = `{
                 "image",
                 "name",
                 "price",
-                "product_id"
+                "product_id",
+                "quantity"
             ],
             "properties": {
                 "available": {
@@ -4511,6 +4515,9 @@ const docTemplate = `{
                 },
                 "product_id": {
                     "type": "string"
+                },
+                "quantity": {
+                    "type": "integer"
                 }
             }
         },

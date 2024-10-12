@@ -24,6 +24,7 @@ type Product struct {
 	QrImage     *string        `db:"qr_image" json:"qr_image"`
 	CreatedAt   time.Time      `db:"created_at" json:"created_at"`
 	UpdatedAt   time.Time      `db:"updated_at" json:"updated_at"`
+	// Quantity	int            `db:"quantity" json:"quantity"`
 }
 
 func NewProduct() *Product {
@@ -41,6 +42,7 @@ type CreateProduct struct {
 	Difficulty  string    `json:"difficulty" validate:"required"`
 	Water       string    `json:"water" validate:"required,lte=20"`
 	Description string    `json:"description"`
+	// Quantity	int       `json:"quantity"`
 }
 
 type UpdateProduct struct {
@@ -55,6 +57,7 @@ type UpdateProduct struct {
 	Difficulty  string   `json:"difficulty" validate:"required"`
 	Water       string   `json:"water" validate:"required,lte=20"`
 	Description string   `json:"description"`
+	// Quantity	int      `json:"quantity"`
 }
 
 type ProductQuery struct {
@@ -71,6 +74,7 @@ type ProductQueryField struct {
 	Difficulty string     `query:"difficulty" json:"difficulty"`
 	Water      string     `query:"water" json:"water"`
 	IsPublish  *bool      `query:"is_publish" json:"is_publish"`
+	// Quantity   int        `query:"quantity" json:"quantity"`
 }
 
 type ActivedProduct struct {

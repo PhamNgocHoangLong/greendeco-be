@@ -17,6 +17,7 @@ type Variant struct {
 	Image       string    `json:"image" db:"image"`
 	Description string    `json:"description" db:"description"`
 	Currency    string    `json:"currency" db:"currency"`
+	Quantity	int       `json:"quantity" db:"quantity"`
 	CreatedAt   time.Time `db:"created_at" json:"created_at"`
 	UpdatedAt   time.Time `db:"updated_at" json:"updated_at"`
 }
@@ -32,6 +33,7 @@ type CreateVariant struct {
 	Currency    string    `json:"currency" validate:"required,iso4217"`
 	Image       string    `json:"image" validate:"required,url"`
 	Description string    `json:"description"`
+	Quantity	int       `json:"quantity"`
 }
 
 type UpdateVariant struct {
@@ -46,4 +48,5 @@ type UpdateVariant struct {
 	Currency    string    `json:"currency" validate:"required,iso4217"`
 	Image       string    `json:"image" validate:"required,url"`
 	Description string    `json:"description"`
+	Quantity 	int       `json:"quantity" validate:"required"`
 }

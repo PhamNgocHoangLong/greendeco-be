@@ -31,4 +31,5 @@ func (r *VariantRoutes) privateProductRouter() {
 	r.app.Post("/", controller.CreateVariant)
 	r.app.Delete("/:id", controller.DeleteVariant)
 	r.app.Put("/:id", controller.UpdateVariant)
+	
 }

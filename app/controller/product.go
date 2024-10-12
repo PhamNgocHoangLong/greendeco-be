@@ -1,6 +1,8 @@
 package controller
 
 import (
+	"fmt"
+
 	"github.com/PhamNgocHoangLong/greendeco-be.git/app/models"
 	"github.com/PhamNgocHoangLong/greendeco-be.git/app/repository"
 	"github.com/PhamNgocHoangLong/greendeco-be.git/pkg/middlewares"
@@ -64,7 +66,7 @@ func CreateProduct(c *fiber.Ctx) error {
 				Message: "record already exists",
 			})
 		}
-
+		fmt.Println("Error creating product:", err)
 		return c.Status(fiber.StatusInternalServerError).JSON(models.ErrorResponse{
 			Message: "some thing bad happended",
 		})

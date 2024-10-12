@@ -14,7 +14,7 @@ type Config struct {
 		Name     string `envconfig:"DB_NAME" default:"greendeco"`
 		Port     string `envconfig:"DB_PORT" default:"5432"`
 		User     string `envconfig:"DB_USER" default:"postgres"`
-		Password string `envconfig:"DB_PASSWORD" default:"postgres"`
+		Password string `envconfig:"DB_PASSWORD" default:"30012003"`
 		SSLMode  string `envconfig:"SSL_MODE" default:"disable"`
 	}
 	Auth struct {

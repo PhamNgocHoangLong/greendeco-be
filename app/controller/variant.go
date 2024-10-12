@@ -1,6 +1,8 @@
 package controller
 
 import (
+	"fmt"
+
 	"github.com/gofiber/fiber/v2"
 	"github.com/golang-jwt/jwt/v5"
 	"github.com/google/uuid"
@@ -65,6 +67,7 @@ func CreateVariant(c *fiber.Ctx) error {
 				Message: "invalid product",
 			})
 		}
+		fmt.Println("Error creating variant:", err)
 
 		return c.Status(fiber.StatusInternalServerError).JSON(models.ErrorResponse{
 			Message: "some thing bad happended",

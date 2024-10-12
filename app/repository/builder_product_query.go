@@ -124,3 +124,12 @@ func (q *productQueryBuilder) Build() string {
 	q.query += fmt.Sprintf(" ORDER BY %s %s", q.sortBy, q.sort)
 	return q.query
 }
+
+// func (q *productQueryBuilder) SetQuantity(quantity int) *productQueryBuilder {
+// 	if quantity != 0 {
+// 		query := fmt.Sprintf(`quantity='%d'`, quantity)
+// 		q.field[query] = true
+// 	}
+
+// 	return q
+// }

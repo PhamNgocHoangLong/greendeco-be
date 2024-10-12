@@ -38,7 +38,7 @@ func NewProductRepo(db *database.DB) ProductRepository {
 }
 
 func (repo *ProductRepo) Create(m *models.CreateProduct) (string, error) {
-	query := fmt.Sprintf(`INSERT INTO "%s" (category_id ,name, images, size, type, detail, light, difficulty, water, description ) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9, $10) RETURNING id`, ProductTable)
+	query := fmt.Sprintf(`INSERT INTO "%s" (category_id ,name, images, size, type, detail, light, difficulty, water, description) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10) RETURNING id`, ProductTable)
 	newProduct := repo.db.QueryRow(query, m.CategoryId, m.Name, m.Images, m.Size, m.Type, m.Detail, m.Light, m.Difficulty, m.Water, m.Description)
 	var productId string
 	if err := newProduct.Scan(&productId); err != nil {
@@ -81,6 +81,7 @@ func (repo *ProductRepo) All(q models.ProductQuery) ([]models.ActivedProduct, er
 		SetType(q.Fields.Type).
 		SetDifficulty(q.Fields.Difficulty).
 		SetWater(q.Fields.Water).
+		// SetQuantity(q.Fields.Quantity).
 		SortBy(q.SortBy, q.Sort).
 		Build()
 
@@ -157,6 +158,7 @@ func (repo *ProductRepo) GetAllProducts(q *models.ProductQuery) ([]models.Produc
 		SetDifficulty(q.Fields.Difficulty).
 		SetWater(q.Fields.Water).
 		SetPublished(q.Fields.IsPublish).
+		// SetQuantity(q.Fields.Quantity).
 		SortBy(q.SortBy, q.Sort).
 		Build()
 

@@ -52,8 +52,8 @@ func (repo *VariantRepo) Create(m *models.CreateVariant) error {
 }
 
 func (repo *VariantRepo) createVariant(m *models.CreateVariant) error {
-	query := fmt.Sprintf(`INSERT INTO "%s" (product, name, color, color_name, price,currency, image, description, available) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9)`, VariantTable)
-	_, err := repo.db.Exec(query, m.ProductId, m.Name, m.Color, m.ColorName, m.Price, m.Currency, m.Image, m.Description, m.Available)
+	query := fmt.Sprintf(`INSERT INTO "%s" (product, name, color, color_name, price,currency, image, description, available, quantity) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)`, VariantTable)
+	_, err := repo.db.Exec(query, m.ProductId, m.Name, m.Color, m.ColorName, m.Price, m.Currency, m.Image, m.Description, m.Available, m.Quantity)
 	if err != nil {
 		return err
 	}
@@ -68,8 +68,8 @@ func (repo *VariantRepo) createDefaultVariant(m *models.CreateVariant) error {
 	}
 	defer tx.Rollback()
 
-	query := fmt.Sprintf(`INSERT INTO "%s" (product, name, color,color_name, price,currency, image, description, available) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING id`, VariantTable)
-	newVariant := tx.QueryRow(query, m.ProductId, m.Name, m.Color, m.ColorName, m.Price, m.Currency, m.Image, m.Description, m.Available)
+	query := fmt.Sprintf(`INSERT INTO "%s" (product, name, color,color_name, price,currency, image, description, available,quantity) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10) RETURNING id`, VariantTable)
+	newVariant := tx.QueryRow(query, m.ProductId, m.Name, m.Color, m.ColorName, m.Price, m.Currency, m.Image, m.Description, m.Available, m.Quantity)
 	if err != nil {
 		return err
 	}
@@ -159,8 +159,8 @@ func (repo *VariantRepo) UpdateDefaultVariant(m *models.UpdateDefaultVariant) er
 }
 
 func (repo *VariantRepo) UpdateById(m *models.UpdateVariant) error {
-	query := fmt.Sprintf(`UPDATE "%s" SET available = $2, name = $3, color = $4, price = $5, currency = $6, image = $7, description = $8, color_name = $9  WHERE id = $1`, VariantTable)
-	if _, err := repo.db.Exec(query, m.ID, m.Available, m.Name, m.Color, m.Price, m.Currency, m.Image, m.Description, m.ColorName); err != nil {
+	query := fmt.Sprintf(`UPDATE "%s" SET available = $2, name = $3, color = $4, price = $5, currency = $6, image = $7, description = $8, color_name = $9, quantity = $10  WHERE id = $1`, VariantTable)
+	if _, err := repo.db.Exec(query, m.ID, m.Available, m.Name, m.Color, m.Price, m.Currency, m.Image, m.Description, m.ColorName, m.Quantity); err != nil {
 		return err
 	}
 	return nil
