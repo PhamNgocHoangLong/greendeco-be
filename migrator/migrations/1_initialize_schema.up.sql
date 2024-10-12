@@ -71,6 +71,7 @@ price DECIMAL NOT NULL,
 currency VARCHAR(10) NOT NULL,
 image TEXT NOT NULL,
 description TEXT NOT NULL,
+quantity INT,
 created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW (),
 updated_at TIMESTAMP DEFAULT current_timestamp,
 FOREIGN KEY(product) REFERENCES products (id) ON DELETE CASCADE
